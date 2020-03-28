@@ -1,7 +1,7 @@
 const express = require('express');
 //Importando express para a variável express.
 const cors = require('cors');
-
+const {errors} = require('celebrate')
 const routes = require('./routes');
 //Como não é um pacote, é preciso usar './' onde eu encontro os módulos importados;
 //Para voltar pasta é preciso '../'
@@ -11,6 +11,7 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 app.use(routes);
+app.use(errors())
 //Usando as rotas;
 /**
  *    Rota / Recurso
@@ -160,5 +161,5 @@ app.post('/users', (request, response) => {
   */
 
 //Criando a rota principal
-app.listen(3333)
+module.exports = app;
 //Quando acessar 'localhost:3333', ele irá exibir a aplicação.
